@@ -1,0 +1,31 @@
+app = "duartly-english"
+primary_region = "gru"
+
+[build]
+
+[env]
+  NODE_ENV = "production"
+  TIMEZONE = "America/Sao_Paulo"
+  PORT = "3000"
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+[processes]
+  bot = "node src/bot/index.js"
+  scheduler = "node src/services/scheduler.js"
+
+[[services]]
+  processes = ["bot"]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
