@@ -1,0 +1,27 @@
+{
+  "name": "duartly-english",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "English learning Telegram bot — DuartlyEnglish",
+  "main": "src/bot/index.js",
+  "scripts": {
+    "start": "node src/bot/index.js",
+    "dev": "nodemon src/bot/index.js",
+    "scheduler": "node src/services/scheduler.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "@google/genai": "^1.15.0",
+    "@supabase/supabase-js": "^2.47.0",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.4.5",
+    "axios": "^1.7.7",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

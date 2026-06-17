@@ -58,10 +58,10 @@ async function sendLessonIntro(ctx, todayLesson) {
 export async function sendLessonStep(ctx, step) {
   const plan = ctx.session.lessonPlan?.dayPlan;
   if (!plan) return ctx.reply('Sessão expirada. Use /licao para reiniciar.');
-  await supabase.from('daily_lessons').upsert({
+  try { await supabase.from('daily_lessons').upsert({
     user_id: ctx.user.id, lesson_date: ctx.session.lessonDate,
     content: {}, current_step: step, started_at: new Date().toISOString(),
-  }, { onConflict: 'user_id,lesson_date' }).catch(() => {});
+  }, { onConflict: 'user_id,lesson_date' }); } catch {}
   switch (step) {
     case 0: return sendVocab(ctx, plan.vocab);
     case 1: return sendGrammar(ctx, plan.grammar);
